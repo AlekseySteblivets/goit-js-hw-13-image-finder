@@ -1,25 +1,25 @@
 import './styles.css';
 import NewApiService  from './js/apiService';
 
-const fetchFotosPixabay = NewApiService();
+const fetchFotosPixabay = new NewApiService();
 
 console.log(fetchFotosPixabay);
 
-// const refs = {
-//     searchForm: document.querySelector('form[id=search-form]'),
+const refs = {
+    searchForm: document.querySelector('input'),
 
-// }
+}
 
-// console.log(refs.searchForm);
+console.log(refs.searchForm);
 
-// refs.searchForm.addEventListener('submit', onSearch);
+refs.searchForm.addEventListener('input', onSearch);
 
-// function onSearch (e) {
-//     e.preventDefault();
+function onSearch (e) {
+    e.preventDefault();
 
-//     fetchFotosPixabay.query = e.currentTarget.elements.query.value;
-//     fetchFotosPixabay.fetchFotos();
-// }
+    fetchFotosPixabay.query = e.data;
+    fetchFotosPixabay.fetchFotos();
+}
 
 // console.log(fetchFotosPixabay(1, 'running'));
 
