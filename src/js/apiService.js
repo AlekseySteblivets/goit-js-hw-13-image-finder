@@ -28,7 +28,7 @@ export default class NewApiService {
         .then (data => {
             console.log(data);
             this.increment();
-            return data.articles;
+            return data.hits;
         });
     }
 
