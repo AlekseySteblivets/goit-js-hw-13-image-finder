@@ -24,7 +24,10 @@ function onSearch (e) {
     
     // fetchFotosPixabay.increment();
     fetchFotosPixabay.resetPerPage();
-    fetchFotosPixabay.fetchFotos().then(appendArticlesMarkup);
+    fetchFotosPixabay.fetchFotos().then(articles => {
+        clearArticlesContainer();
+        appendArticlesMarkup(articles);
+    } );
 }
 
 
@@ -35,4 +38,8 @@ function onLoadMore () {
 
 function appendArticlesMarkup(articles) {
     refs.cardRender.insertAdjacentHTML('beforeend', articlesTpl(articles));
+}
+
+function clearArticlesContainer() {
+    refs.cardRender.innerHTML = '';
 }
