@@ -1,25 +1,38 @@
 import './styles.css';
 import NewApiService  from './js/apiService';
+import articlesTpl from './templatesRenderCards.hbs';
 
 const fetchFotosPixabay = new NewApiService();
 
 console.log(fetchFotosPixabay);
 
 const refs = {
-    searchForm: document.querySelector('input'),
-
+    searchForm: document.querySelector('.search-form'),
+    cardRender: document.querySelector('.gallery'),
+    buttonLoadMore: document.querySelector('.button-load-more')
 }
 
 console.log(refs.searchForm);
+console.log(refs.buttonLoadMore);
 
-refs.searchForm.addEventListener('input', onSearch);
+refs.searchForm.addEventListener('submit', onSearch);
+refs.buttonLoadMore.addEventListener('click', onLoadMore);
 
 function onSearch (e) {
     e.preventDefault();
-
-    fetchFotosPixabay.query = e.data;
-    fetchFotosPixabay.fetchFotos();
+    fetchFotosPixabay.query = e.currentTarget.elements.query.value;
+    
+    // fetchFotosPixabay.increment();
+    fetchFotosPixabay.resetPerPage();
+    fetchFotosPixabay.fetchFotos().then(appendArticlesMarkup);
 }
 
-// console.log(fetchFotosPixabay(1, 'running'));
 
+
+function onLoadMore () {
+    fetchFotosPixabay.fetchFotos().then(appendArticlesMarkup);
+}
+
+function appendArticlesMarkup(articles) {
+    refs.cardRender.insertAdjacentHTML('beforeend', articlesTpl(articles));
+}

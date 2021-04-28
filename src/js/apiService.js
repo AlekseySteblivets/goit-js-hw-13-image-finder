@@ -18,7 +18,7 @@ export default class NewApiService {
     fetchFotos() {
         // console.log(this);
         const url = `https://pixabay.com/api/?image_type=photo&orientation=horizontal&q=${this.searchQuery}&page=${this.page}&per_page=12&key=21303972-574e9d18be62e9d74443b9e84`;
-        fetch(url)
+        return fetch(url)
         .then(res => {
             if(!res.ok) {
                 throw res;
@@ -26,8 +26,20 @@ export default class NewApiService {
             return res.json();
              })
         .then (data => {
-            this.page += 1
+            console.log(data);
+            this.increment();
+            return data.articles;
         });
+    }
+
+
+    increment() {
+        this.page += 1;
+    }
+
+    resetPerPage() {
+
+        this.page = 1;
     }
 
     get query () {
