@@ -18,3 +18,18 @@ body {
    */
   background-image: url('./images/bg-pattern.png');
 }
+
+.photo-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 209px;
+  margin-top: 60px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.button-load-more {
+  /* position: fixed; */
+  /* margin-left: 30px; */
+}

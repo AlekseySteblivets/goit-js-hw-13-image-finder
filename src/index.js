@@ -34,7 +34,7 @@ function onSearch (e) {
 
 function onLoadMore () {
     fetchFotosPixabay.fetchFotos().then(appendArticlesMarkup);
-    window.sc
+    // window.scrollTo(0, 0);
 }
 
 function appendArticlesMarkup(articles) {
